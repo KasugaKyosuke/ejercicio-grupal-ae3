@@ -1,3 +1,6 @@
+let listaInactivos = document.getElementById("lista-inactivos");
+let lista = document.getElementById("lista-clientes");
+
 // Creacion del objeto clienteObjeto
 let clienteObjeto1 = {
     id: 0,
@@ -53,14 +56,18 @@ clientes.push(clienteObjeto1)
 clientes.push(clienteObjeto2)
 clientes.push(clienteObjeto3)
 
-//Punto 3
-
+//Punto 3: Acceder a la información de un cliente:
+lista.innerHTML = "";
 for (let c = 0; c < clientes.length; c++) {
-    document.write(`Nombre: ${clientes[c].nombre}<br> Apellido: ${clientes[c].apellido}<br> Email: ${clientes[c].email}<br> Teléfono: ${clientes[c].telefono} <br><br>`)
-} 
+    lista.innerHTML += "Id Cliente: " + clientes[c].id + " <br>Nombre: " + clientes[c].nombre + "<br> Apellido: " + clientes[c].apellido + "<br> Email: " + clientes[c].email + "<br> Teléfono: " + clientes[c].telefono + " <br><br>";
+}
 
-//Punto 4
 
+// for (let c = 0; c < clientes.length; c++) {
+//     document.write(`Id Cliente: ${clientes[c].id} <br>Nombre: ${clientes[c].nombre}<br> Apellido: ${clientes[c].apellido}<br> Email: ${clientes[c].email}<br> Teléfono: ${clientes[c].telefono} <br><br>`)
+// } 
+
+//Punto 4: Contar la cantidad de clientes activos:
 let activos = 0
 
 for (let a = 0; a < clientes.length; a++) {
@@ -72,5 +79,224 @@ for (let a = 0; a < clientes.length; a++) {
 console.log(activos)
 document.write(`Clientes Activos: ${activos}`)
 
-//Punto 5
+//Punto 5: Agregar un nuevo cliente:
 
+const botonNuevoCliente = document.getElementById("nuevo-cliente")
+
+botonNuevoCliente.addEventListener("click", function(){
+    let clienteObjeto4 = {
+        id: 0,
+        nombre: "",
+        apellido: "",
+        email: "",
+        telefono: "",
+        activo: true
+    }
+    clienteObjeto4.id = ((clientes.length)+1)
+    clienteObjeto4.nombre = prompt("Ingrese el nombre del cliente: ")
+    clienteObjeto4.apellido = prompt("Ingrese el apellido del cliente: ")
+    clienteObjeto4.email = prompt("Ingrese email del cliente: ")
+    clienteObjeto4.telefono = prompt("Ingrese telefono del cliente: ")
+    clienteObjeto4.activo = true
+
+    clientes.push(clienteObjeto4)
+
+    lista.innerHTML = "";
+    for (let c = 0; c < clientes.length; c++) {
+        lista.innerHTML += "Id Cliente: " + clientes[c].id + " <br>Nombre: " + clientes[c].nombre + "<br> Apellido: " + clientes[c].apellido + "<br> Email: " + clientes[c].email + "<br> Teléfono: " + clientes[c].telefono + " <br><br>";
+    }
+    console.log(clientes)
+})
+
+lista.innerHTML = "";
+for (let c = 0; c < clientes.length; c++) {
+    lista.innerHTML += "Id Cliente: " + clientes[c].id + " <br>Nombre: " + clientes[c].nombre + "<br> Apellido: " + clientes[c].apellido + "<br> Email: " + clientes[c].email + "<br> Teléfono: " + clientes[c].telefono + " <br><br>";
+}
+
+// Actualizar lista de inactivos
+listaInactivos.innerHTML = "";
+for (let a = 0; a < clientes.length; a++) {
+    if (clientes[a].activo === false) {
+        listaInactivos.innerHTML += "Id Cliente: " + clientes[a].id + " <br>Nombre: " + clientes[a].nombre + "<br> Apellido: " + clientes[a].apellido + "<br> Email: " + clientes[a].email + "<br> Teléfono: " + clientes[a].telefono + " <br><br>";
+    }
+}
+
+//Punto 5: Eliminar un nuevo cliente:
+
+const botonEliminarCliente = document.getElementById("eliminar-cliente")
+
+botonEliminarCliente.addEventListener("click", function(){
+    let idbuscar = (+prompt("Ingrese el id del cliente a eliminar: "));
+    let indice = -1; //-1 indica que no quedan clientes o no se encontró
+
+    // Buscar el índice del cliente con ese id
+    for (let i = 0; i < clientes.length; i++) {
+        if (clientes[i].id === idbuscar) {
+            indice = i;
+        }
+    }
+
+    // Si se encontró, eliminarlo
+    if (indice !== -1) {
+        clientes.splice(indice, 1);
+    }
+
+    lista.innerHTML = "";
+    for (let c = 0; c < clientes.length; c++) {
+        lista.innerHTML += "Id Cliente: " + clientes[c].id + " <br>Nombre: " + clientes[c].nombre + "<br> Apellido: " + clientes[c].apellido + "<br> Email: " + clientes[c].email + "<br> Teléfono: " + clientes[c].telefono + " <br><br>";
+    }
+    console.log(clientes)
+})
+
+lista.innerHTML = "";
+for (let c = 0; c < clientes.length; c++) {
+    lista.innerHTML += "Id Cliente: " + clientes[c].id + " <br>Nombre: " + clientes[c].nombre + "<br> Apellido: " + clientes[c].apellido + "<br> Email: " + clientes[c].email + "<br> Teléfono: " + clientes[c].telefono + " <br><br>";
+}
+
+// Actualizar lista de inactivos
+listaInactivos.innerHTML = "";
+for (let a = 0; a < clientes.length; a++) {
+    if (clientes[a].activo === false) {
+        listaInactivos.innerHTML += "Id Cliente: " + clientes[a].id + " <br>Nombre: " + clientes[a].nombre + "<br> Apellido: " + clientes[a].apellido + "<br> Email: " + clientes[a].email + "<br> Teléfono: " + clientes[a].telefono + " <br><br>";
+    }
+}
+
+//Punto 6: Eliminar un nuevo cliente:
+
+const botonModificarCliente = document.getElementById("modificar-cliente")
+
+botonModificarCliente.addEventListener("click", function(){
+    let idbuscar = (+prompt("Ingrese el id del cliente a modificar: "));
+    let indice = -1; //-1 indica que no quedan clientes o no se encontró
+
+    // Buscar el índice del cliente con ese id
+    for (let i = 0; i < clientes.length; i++) {
+        if (clientes[i].id === idbuscar) {
+            indice = i;
+        }
+    }
+
+    // Si se encontró, editar los atributos del cliente (El estado del cliente solo se ve en consola)
+    if (indice !== -1) {
+        clientes[indice].nombre = prompt("Ingrese el nuevo nombre del cliente: ", clientes[indice].nombre);
+        clientes[indice].apellido = prompt("Ingrese el nuevo apellido del cliente: ", clientes[indice].apellido);
+        clientes[indice].email = prompt("Ingrese el nuevo email del cliente: ", clientes[indice].email);
+        clientes[indice].telefono = prompt("Ingrese el nuevo telefono del cliente: ", clientes[indice].telefono);
+        clientes[indice].activo = confirm("¿El cliente está activo? (Aceptar para sí, Cancelar para no)");
+    }
+    // Actualizar la lista de clientes
+        lista.innerHTML = "";
+    for (let c = 0; c < clientes.length; c++) {
+        lista.innerHTML += "Id Cliente: " + clientes[c].id + " <br>Nombre: " + clientes[c].nombre + "<br> Apellido: " + clientes[c].apellido + "<br> Email: " + clientes[c].email + "<br> Teléfono: " + clientes[c].telefono + " <br><br>";
+    }
+
+    // Actualizar lista de inactivos
+    listaInactivos.innerHTML = "";
+    for (let a = 0; a < clientes.length; a++) {
+        if (clientes[a].activo === false) {
+            listaInactivos.innerHTML += "Id Cliente: " + clientes[a].id + " <br>Nombre: " + clientes[a].nombre + "<br> Apellido: " + clientes[a].apellido + "<br> Email: " + clientes[a].email + "<br> Teléfono: " + clientes[a].telefono + " <br><br>";
+        }
+    }for (let c = 0; c < clientes.length; c++) {
+        lista.innerHTML += "Id Cliente: " + clientes[c].id + " <br>Nombre: " + clientes[c].nombre + "<br> Apellido: " + clientes[c].apellido + "<br> Email: " + clientes[c].email + "<br> Teléfono: " + clientes[c].telefono + " <br><br>";
+    }
+})
+
+// Actualizar lista de inactivos
+
+listaInactivos.innerHTML = "";
+for (let a = 0; a < clientes.length; a++) {
+    if (clientes[a].activo === false) {
+        listaInactivos.innerHTML += "Id Cliente: " + clientes[a].id + " <br>Nombre: " + clientes[a].nombre + "<br> Apellido: " + clientes[a].apellido + "<br> Email: " + clientes[a].email + "<br> Teléfono: " + clientes[a].telefono + " <br><br>";
+    }
+}
+
+//Punto 7: Consultar clientes inactivos:
+
+listaInactivos.innerHTML = "";
+
+for (let a = 0; a < clientes.length; a++) {
+    if (clientes[a].activo === false) {
+        listaInactivos.innerHTML += "Id Cliente: " + clientes[a].id + " <br>Nombre: " + clientes[a].nombre + "<br> Apellido: " + clientes[a].apellido + "<br> Email: " + clientes[a].email + "<br> Teléfono: " + clientes[a].telefono + " <br><br>";
+    }
+
+}
+
+
+
+
+
+// let listaInactivos = document.getElementById("lista-inactivos");
+// listaInactivos.innerHTML = "";
+// for (let c = 0; c < clientes.length; c++) {
+//     listaInactivos.innerHTML += "Id Cliente: " + clientes[c].id + " <br>Nombre: " + clientes[c].nombre + "<br> Apellido: " + clientes[c].apellido + "<br> Email: " + clientes[c].email + "<br> Teléfono: " + clientes[c].telefono + " <br><br>";
+// }
+
+
+
+
+
+
+// botonEliminarCliente.addEventListener("click", function(){
+//     idbuscar = (+prompt("Ingrese el id del cliente a eliminar: "))
+
+//     for(let i = 0; i < clientes.length; i++) {
+//         if (clientes[i].id === idbuscar) {
+//             clientes.splice(idbuscar, 1)
+//         }}
+
+    
+
+//     lista.innerHTML = "";
+//     for (let c = 0; c < clientes.length; c++) {
+//         lista.innerHTML += "Id Cliente: " + clientes[c].id + " <br>Nombre: " + clientes[c].nombre + "<br> Apellido: " + clientes[c].apellido + "<br> Email: " + clientes[c].email + "<br> Teléfono: " + clientes[c].telefono + " <br><br>";
+//     }
+//     console.log(clientes)
+// })
+
+// botonNuevoCliente.addEventListener("click", function(){
+//     let clienteObjeto4 = {
+//     id: 0,
+//     nombre: "",
+//     apellido: "",
+//     email: "",
+//     telefono: "",
+//     activo: true
+// }
+//     clienteObjeto4.id = ((clientes.length)+1)
+//     clienteObjeto4.nombre = prompt("Ingrese el nombre del cliente: ")
+//     clienteObjeto4.apellido = prompt("Ingrese el apellido del cliente: ")
+//     clienteObjeto4.email = prompt("Ingrese email del cliente: ")
+//     clienteObjeto4.telefono = prompt("Ingrese telefono del cliente: ")
+//     clienteObjeto4.activo = true
+
+//     clientes.push(clienteObjeto4)
+
+//     for (let c = 0; c < clientes.length; c++) {
+//     document.write(`Id Cliente: ${clientes[c].id} <br>Nombre: ${clientes[c].nombre}<br> Apellido: ${clientes[c].apellido}<br> Email: ${clientes[c].email}<br> Teléfono: ${clientes[c].telefono} <br><br>`)
+// }  
+//     console.log(clientes)
+// })
+
+// //Punto 5: Eliminar un cliente:
+
+// const botonEliminarCliente = document.getElementById("elimina-cliente")
+
+// botonEliminarCliente.addEventListener("click", function(){
+//     id = (+prompt("Ingrese el id del cliente a eliminar: ")-1)
+//     clientes.splice(id, 1)  
+
+//     for (let c = 0; c < clientes.length; c++) {
+//     document.write(`Id Cliente: ${clientes[c].id} <br>Nombre: ${clientes[c].nombre}<br> Apellido: ${clientes[c].apellido}<br> Email: ${clientes[c].email}<br> Teléfono: ${clientes[c].telefono} <br><br>`)
+//     }
+//     console.log(clientes)
+// })
+
+
+
+
+
+
+
+// $("#nuevo-cliente").on("click", function() {
+//     let nombre = prompt("Ingrese nombre del cliente: ")
+// })
