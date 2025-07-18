@@ -1,4 +1,5 @@
 let listaInactivos = document.getElementById("lista-inactivos");
+let listaActivos = document.getElementById("lista-activos")
 let lista = document.getElementById("lista-clientes");
 
 // Creacion del objeto clienteObjeto
@@ -121,7 +122,7 @@ for (let a = 0; a < clientes.length; a++) {
     }
 }
 
-//Punto 5: Eliminar un nuevo cliente:
+//Punto 6: Eliminar un nuevo cliente:
 
 const botonEliminarCliente = document.getElementById("eliminar-cliente")
 
@@ -161,7 +162,7 @@ for (let a = 0; a < clientes.length; a++) {
     }
 }
 
-//Punto 6: Eliminar un nuevo cliente:
+//Punto 7: Modificar un cliente:
 
 const botonModificarCliente = document.getElementById("modificar-cliente")
 
@@ -175,7 +176,6 @@ botonModificarCliente.addEventListener("click", function(){
             indice = i;
         }
     }
-
     // Si se encontró, editar los atributos del cliente (El estado del cliente solo se ve en consola)
     if (indice !== -1) {
         clientes[indice].nombre = prompt("Ingrese el nuevo nombre del cliente: ", clientes[indice].nombre);
@@ -184,21 +184,8 @@ botonModificarCliente.addEventListener("click", function(){
         clientes[indice].telefono = prompt("Ingrese el nuevo telefono del cliente: ", clientes[indice].telefono);
         clientes[indice].activo = confirm("¿El cliente está activo? (Aceptar para sí, Cancelar para no)");
     }
-    // Actualizar la lista de clientes
-        lista.innerHTML = "";
-    for (let c = 0; c < clientes.length; c++) {
-        lista.innerHTML += "Id Cliente: " + clientes[c].id + " <br>Nombre: " + clientes[c].nombre + "<br> Apellido: " + clientes[c].apellido + "<br> Email: " + clientes[c].email + "<br> Teléfono: " + clientes[c].telefono + " <br><br>";
-    }
 
-    // Actualizar lista de inactivos
-    listaInactivos.innerHTML = "";
-    for (let a = 0; a < clientes.length; a++) {
-        if (clientes[a].activo === false) {
-            listaInactivos.innerHTML += "Id Cliente: " + clientes[a].id + " <br>Nombre: " + clientes[a].nombre + "<br> Apellido: " + clientes[a].apellido + "<br> Email: " + clientes[a].email + "<br> Teléfono: " + clientes[a].telefono + " <br><br>";
-        }
-    }for (let c = 0; c < clientes.length; c++) {
-        lista.innerHTML += "Id Cliente: " + clientes[c].id + " <br>Nombre: " + clientes[c].nombre + "<br> Apellido: " + clientes[c].apellido + "<br> Email: " + clientes[c].email + "<br> Teléfono: " + clientes[c].telefono + " <br><br>";
-    }
+    actualizarListas()
 })
 
 // Actualizar lista de inactivos
@@ -210,17 +197,57 @@ for (let a = 0; a < clientes.length; a++) {
     }
 }
 
-//Punto 7: Consultar clientes inactivos:
+//Punto 8: Consultar clientes inactivos:
+
+clientesInactivos = clientes.filter(cliente => !cliente.activo)
+console.log(clientesInactivos)
 
 listaInactivos.innerHTML = "";
-
 for (let a = 0; a < clientes.length; a++) {
     if (clientes[a].activo === false) {
         listaInactivos.innerHTML += "Id Cliente: " + clientes[a].id + " <br>Nombre: " + clientes[a].nombre + "<br> Apellido: " + clientes[a].apellido + "<br> Email: " + clientes[a].email + "<br> Teléfono: " + clientes[a].telefono + " <br><br>";
     }
-
+    
 }
 
+
+//Punto 9: Álgebra con arreglos y objetos:
+// Crear una función que reciba dos arreglos de clientes (por ejemplo, uno con clientes nuevos y otro con 
+// clientes existentes) y realice una unión de ambos, agregando los nuevos clientes al arreglo original.
+// Crear otra función para filtrar clientes duplicados (con el mismo id), mostrando solo los clientes únicos.
+
+
+
+
+
+
+
+function actualizarListas() {
+    listaActivos.innerHTML = "";
+    lista.innerHTML = "";
+    listaInactivos.innerHTML = "";
+    for (let c = 0; c < clientes.length; c++) {
+        lista.innerHTML += "Id Cliente: " + clientes[c].id + " <br>Nombre: " + clientes[c].nombre + "<br> Apellido: " + clientes[c].apellido + "<br> Email: " + clientes[c].email + "<br> Teléfono: " + clientes[c].telefono + " <br><br>";
+        if (!clientes[c].activo) {
+            listaInactivos.innerHTML += "Id Cliente: " + clientes[c].id + " <br>Nombre: " + clientes[c].nombre + "<br> Apellido: " + clientes[c].apellido + "<br> Email: " + clientes[c].email + "<br> Teléfono: " + clientes[c].telefono + " <br><br>";
+        }else if (clientes[c].activo){
+            listaActivos.innerHTML += "Id Cliente: " + clientes[c].id + " <br>Nombre: " + clientes[c].nombre + "<br> Apellido: " + clientes[c].apellido + "<br> Email: " + clientes[c].email + "<br> Teléfono: " + clientes[c].telefono + " <br><br>";
+        }
+    }
+}
+
+// Crear arreglo de clientes activos
+const clientesActivos = clientes.filter(cliente => cliente.activo === true);
+
+// Mostrar clientes activos en el DOM (por ejemplo, en un div con id="lista-activos")
+listaActivos.innerHTML = "";
+for (let i = 0; i < clientesActivos.length; i++) {
+    listaActivos.innerHTML += "Id Cliente: " + clientesActivos[i].id + 
+        " <br>Nombre: " + clientesActivos[i].nombre + 
+        "<br> Apellido: " + clientesActivos[i].apellido + 
+        "<br> Email: " + clientesActivos[i].email + 
+        "<br> Teléfono: " + clientesActivos[i].telefono + " <br><br>";
+}
 
 
 
