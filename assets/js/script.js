@@ -1,6 +1,10 @@
 let listaInactivos = document.getElementById("lista-inactivos");
 let listaActivos = document.getElementById("lista-activos")
 let lista = document.getElementById("lista-clientes");
+let listaClientesUnicos = document.getElementById("lista-clientes-unicos");
+let cantidadActivos = document.getElementById("clientes-activos");
+
+let clientesNuevos = []
 
 // Creacion del objeto clienteObjeto
 let clienteObjeto1 = {
@@ -63,22 +67,26 @@ for (let c = 0; c < clientes.length; c++) {
     lista.innerHTML += "Id Cliente: " + clientes[c].id + " <br>Nombre: " + clientes[c].nombre + "<br> Apellido: " + clientes[c].apellido + "<br> Email: " + clientes[c].email + "<br> Teléfono: " + clientes[c].telefono + " <br><br>";
 }
 
+cantidadClientesActivos()
+
 
 // for (let c = 0; c < clientes.length; c++) {
 //     document.write(`Id Cliente: ${clientes[c].id} <br>Nombre: ${clientes[c].nombre}<br> Apellido: ${clientes[c].apellido}<br> Email: ${clientes[c].email}<br> Teléfono: ${clientes[c].telefono} <br><br>`)
 // } 
 
 //Punto 4: Contar la cantidad de clientes activos:
-let activos = 0
-
-for (let a = 0; a < clientes.length; a++) {
-    if (clientes[a].activo === true) {
-        activos++
+function cantidadClientesActivos() {
+    let activos = 0
+    
+    for (let a = 0; a < clientes.length; a++) {
+        if (clientes[a].activo === true) {
+            activos++
+        }
     }
+    
+    console.log(activos)
+    cantidadActivos.innerHTML = `Clientes Activos: ${activos}`
 }
-
-console.log(activos)
-document.write(`Clientes Activos: ${activos}`)
 
 //Punto 5: Agregar un nuevo cliente:
 
@@ -101,12 +109,16 @@ botonNuevoCliente.addEventListener("click", function(){
     clienteObjeto4.activo = true
 
     clientes.push(clienteObjeto4)
+    clientesNuevos.push(clienteObjeto4)
 
     lista.innerHTML = "";
     for (let c = 0; c < clientes.length; c++) {
         lista.innerHTML += "Id Cliente: " + clientes[c].id + " <br>Nombre: " + clientes[c].nombre + "<br> Apellido: " + clientes[c].apellido + "<br> Email: " + clientes[c].email + "<br> Teléfono: " + clientes[c].telefono + " <br><br>";
     }
     console.log(clientes)
+    console.log(clientesNuevos)
+
+    cantidadClientesActivos()
 })
 
 lista.innerHTML = "";
@@ -147,6 +159,8 @@ botonEliminarCliente.addEventListener("click", function(){
         lista.innerHTML += "Id Cliente: " + clientes[c].id + " <br>Nombre: " + clientes[c].nombre + "<br> Apellido: " + clientes[c].apellido + "<br> Email: " + clientes[c].email + "<br> Teléfono: " + clientes[c].telefono + " <br><br>";
     }
     console.log(clientes)
+
+    cantidadClientesActivos()
 })
 
 lista.innerHTML = "";
@@ -178,6 +192,7 @@ botonModificarCliente.addEventListener("click", function(){
     }
     // Si se encontró, editar los atributos del cliente (El estado del cliente solo se ve en consola)
     if (indice !== -1) {
+        clientes[indice].id = prompt("Ingrese el nuevo id del cliente: ", clientes[indice].id);
         clientes[indice].nombre = prompt("Ingrese el nuevo nombre del cliente: ", clientes[indice].nombre);
         clientes[indice].apellido = prompt("Ingrese el nuevo apellido del cliente: ", clientes[indice].apellido);
         clientes[indice].email = prompt("Ingrese el nuevo email del cliente: ", clientes[indice].email);
@@ -228,12 +243,17 @@ function actualizarListas() {
     listaInactivos.innerHTML = "";
     for (let c = 0; c < clientes.length; c++) {
         lista.innerHTML += "Id Cliente: " + clientes[c].id + " <br>Nombre: " + clientes[c].nombre + "<br> Apellido: " + clientes[c].apellido + "<br> Email: " + clientes[c].email + "<br> Teléfono: " + clientes[c].telefono + " <br><br>";
+        //11.- Se crea una condición dentro de ciclo for, que determine si un cliente es activo o inactivo, y según estado muestra información de cliente por consola
         if (!clientes[c].activo) {
             listaInactivos.innerHTML += "Id Cliente: " + clientes[c].id + " <br>Nombre: " + clientes[c].nombre + "<br> Apellido: " + clientes[c].apellido + "<br> Email: " + clientes[c].email + "<br> Teléfono: " + clientes[c].telefono + " <br><br>";
+            console.log(`Cliente ${clientes[c].nombre} se encuentra Inactivo`)
         }else if (clientes[c].activo){
             listaActivos.innerHTML += "Id Cliente: " + clientes[c].id + " <br>Nombre: " + clientes[c].nombre + "<br> Apellido: " + clientes[c].apellido + "<br> Email: " + clientes[c].email + "<br> Teléfono: " + clientes[c].telefono + " <br><br>";
+            console.log(`Cliente ${clientes[c].nombre} se encuentra Activo`)
         }
     }
+
+    cantidadClientesActivos()
 }
 
 // Crear arreglo de clientes activos
@@ -248,6 +268,35 @@ for (let i = 0; i < clientesActivos.length; i++) {
         "<br> Email: " + clientesActivos[i].email + 
         "<br> Teléfono: " + clientesActivos[i].telefono + " <br><br>";
 }
+
+const botonClientesUnicos = document.getElementById("clientes-unicos")
+
+botonClientesUnicos.addEventListener("click", function(){
+    let clientesUnicos = []
+    let duplicado = false;
+
+    if (clientes.length >= 2) {
+        for (let x = 0; x < clientes.length; x++) {
+            duplicado = false;
+            for (let y = x + 1; y < clientes.length; y++) {
+                if (clientes[x].id === clientes[y].id) {
+                    duplicado = true
+                    break
+                }
+            }
+            if (!duplicado) {
+                clientesUnicos.push(clientes[x])
+            }
+        }
+
+        listaClientesUnicos.innerHTML = ""
+        for (let a = 0; a < clientesUnicos.length; a++) {
+            listaClientesUnicos.innerHTML += "Id Cliente: " + clientesUnicos[a].id + " <br>Nombre: " + clientesUnicos[a].nombre + "<br> Apellido: " + clientesUnicos[a].apellido + "<br> Email: " + clientesUnicos[a].email + "<br> Teléfono: " + clientesUnicos[a].telefono + " <br><br>";
+        }
+    } else {
+        alert("Lista solo tiene un elemento, no se puede hacer comparacion")
+    }
+})
 
 
 
