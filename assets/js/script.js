@@ -192,7 +192,7 @@ botonModificarCliente.addEventListener("click", function(){
     }
     // Si se encontró, editar los atributos del cliente (El estado del cliente solo se ve en consola)
     if (indice !== -1) {
-        clientes[indice].id = prompt("Ingrese el nuevo id del cliente: ", clientes[indice].id);
+        clientes[indice].id = (+prompt("Ingrese el nuevo id del cliente: ", clientes[indice].id));
         clientes[indice].nombre = prompt("Ingrese el nuevo nombre del cliente: ", clientes[indice].nombre);
         clientes[indice].apellido = prompt("Ingrese el nuevo apellido del cliente: ", clientes[indice].apellido);
         clientes[indice].email = prompt("Ingrese el nuevo email del cliente: ", clientes[indice].email);
@@ -271,32 +271,57 @@ for (let i = 0; i < clientesActivos.length; i++) {
 
 const botonClientesUnicos = document.getElementById("clientes-unicos")
 
-botonClientesUnicos.addEventListener("click", function(){
-    let clientesUnicos = []
-    let duplicado = false;
+// botonClientesUnicos.addEventListener("click", function(){
+//     let clientesUnicos = []
+//     let duplicado = false;
 
-    if (clientes.length >= 2) {
-        for (let x = 0; x < clientes.length; x++) {
-            duplicado = false;
-            for (let y = x + 1; y < clientes.length; y++) {
-                if (clientes[x].id === clientes[y].id) {
-                    duplicado = true
-                    break
-                }
-            }
-            if (!duplicado) {
-                clientesUnicos.push(clientes[x])
-            }
-        }
+//     if (clientes.length >= 2) {
+//         for (let x = 0; x < clientes.length; x++) {
+//             duplicado = false;
+//             for (let y = x + 1; y < clientes.length; y++) {
+//                 if (clientes[x].id === clientes[y].id) {
+//                     duplicado = true
+//                     break
+//                 }
+//             }
+//             if (!duplicado) {
+//                 clientesUnicos.push(clientes[x])
+//             }
+//         }
 
-        listaClientesUnicos.innerHTML = ""
+//         listaClientesUnicos.innerHTML = ""
+//         for (let a = 0; a < clientesUnicos.length; a++) {
+//             listaClientesUnicos.innerHTML += "Id Cliente: " + clientesUnicos[a].id + " <br>Nombre: " + clientesUnicos[a].nombre + "<br> Apellido: " + clientesUnicos[a].apellido + "<br> Email: " + clientesUnicos[a].email + "<br> Teléfono: " + clientesUnicos[a].telefono + " <br><br>";
+//         }
+//     } else {
+//         alert("Lista solo tiene un elemento, no se puede hacer comparacion")
+//     }
+// })
+
+botonClientesUnicos.addEventListener("click", function() {
+    // Contar ocurrencias de cada ID
+    const idCount = {};
+    for (let i = 0; i < clientes.length; i++) {
+        const id = clientes[i].id;
+        idCount[id] = (idCount[id] || 0) + 1;
+    }
+
+    // Filtrar solo los clientes cuyo ID aparece una sola vez
+    const clientesUnicos = clientes.filter(cliente => idCount[cliente.id] === 1);
+
+    listaClientesUnicos.innerHTML = "";
+    if (clientesUnicos.length > 0) {
         for (let a = 0; a < clientesUnicos.length; a++) {
-            listaClientesUnicos.innerHTML += "Id Cliente: " + clientesUnicos[a].id + " <br>Nombre: " + clientesUnicos[a].nombre + "<br> Apellido: " + clientesUnicos[a].apellido + "<br> Email: " + clientesUnicos[a].email + "<br> Teléfono: " + clientesUnicos[a].telefono + " <br><br>";
+            listaClientesUnicos.innerHTML += "Id Cliente: " + clientesUnicos[a].id +
+                " <br>Nombre: " + clientesUnicos[a].nombre +
+                "<br> Apellido: " + clientesUnicos[a].apellido +
+                "<br> Email: " + clientesUnicos[a].email +
+                "<br> Teléfono: " + clientesUnicos[a].telefono + " <br><br>";
         }
     } else {
-        alert("Lista solo tiene un elemento, no se puede hacer comparacion")
+        listaClientesUnicos.innerHTML = "No hay clientes únicos.";
     }
-})
+});
 
 
 
