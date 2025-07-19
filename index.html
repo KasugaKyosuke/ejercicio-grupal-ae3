@@ -1,32 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+    <title>Gestión de Clientes - Grupo 01</title>
 </head>
-<body>
-    <button id="nuevo-cliente">Ingresar nuevo cliente</button>
-    <button id="eliminar-cliente">Eliminar cliente</button>
-    <button id="modificar-cliente">Modificar cliente</button>
-    <button id="clientes-unicos">Ver Clientes Unicos</button> <br> <br>
 
-    <h2>Lista de Clientes:</h2>
-    <div id="lista-clientes"></div>
+<body class="container py-4">
 
-    <h2>Lista de inactivos: </h2>
-    <div id="lista-inactivos"></div>
+    <div class="mb-3 d-flex flex-wrap gap-2">
+        <button id="nuevo-cliente" class="btn btn-primary">Ingresar nuevo cliente</button>
+        <button id="eliminar-cliente" class="btn btn-danger">Eliminar cliente</button>
+        <button id="modificar-cliente" class="btn btn-warning">Modificar cliente</button>
+        <button id="clientes-unicos" class="btn btn-info">Ver Clientes Únicos</button>
+    </div>
 
-    <h2>Lista clientes activos</h2>
-    <div id="lista-activos"></div>
+    <h2 class="mt-4">Lista de Clientes:</h2>
+    <div id="lista-clientes" class="border p-3 rounded bg-light"></div>
 
-    <h2 id="clientes-activos"></h2>
-    
-    <h2>Lista clientes unicos</h2>
-    <div id="lista-clientes-unicos"></div>
+    <h2 class="mt-4">Lista de inactivos: </h2>
+    <div id="lista-inactivos" class="border p-3 rounded bg-light"></div>
+
+    <h2 class="mt-4">Lista clientes activos</h2>
+    <div id="lista-activos" class="border p-3 rounded bg-light"></div>
+
+    <h2 id="clientes-activos" class="mt-4" ></h2>
+
+    <h2 class="mt-4">Lista clientes unicos</h2>
+    <div id="lista-clientes-unicos" class="border p-3 rounded bg-light"></div>
 
 
 
     <script src="assets/js/script.js"></script>
 </body>
+
 </html>

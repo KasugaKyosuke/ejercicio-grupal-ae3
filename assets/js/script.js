@@ -64,18 +64,20 @@ let clienteObjeto4 = {
     activo: true
 }
 
-clienteObjeto1.id = 4
-clienteObjeto1.nombre = "Macarena"
-clienteObjeto1.apellido = "Espinoza"
-clienteObjeto1.email = "maca.espinoza@gmail.com"
-clienteObjeto1.telefono = "8889990001"
-clienteObjeto1.activo = true
+clienteObjeto4.id = 4
+clienteObjeto4.nombre = "Macarena"
+clienteObjeto4.apellido = "Espinoza"
+clienteObjeto4.email = "maca.espinoza@gmail.com"
+clienteObjeto4.telefono = "8889990001"
+clienteObjeto4.activo = true
 
 //Creacion del arreglo clientes que va a almacenar cada uno de los clienteObjeto
 let clientes = []
 clientes.push(clienteObjeto1)
 clientes.push(clienteObjeto2)
 clientes.push(clienteObjeto3)
+clientes.push(clienteObjeto4)
+
 
 //Punto 3: Acceder a la información de un cliente:
 lista.innerHTML = "";
