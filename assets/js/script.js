@@ -55,6 +55,22 @@ clienteObjeto3.email = "daniel.pallares@gmail.com"
 clienteObjeto3.telefono = "3344556677"
 clienteObjeto3.activo = false
 
+let clienteObjeto4 = {
+    id: 0,
+    nombre: "",
+    apellido: "",
+    email: "",
+    telefono: "",
+    activo: true
+}
+
+clienteObjeto1.id = 4
+clienteObjeto1.nombre = "Macarena"
+clienteObjeto1.apellido = "Espinoza"
+clienteObjeto1.email = "maca.espinoza@gmail.com"
+clienteObjeto1.telefono = "8889990001"
+clienteObjeto1.activo = true
+
 //Creacion del arreglo clientes que va a almacenar cada uno de los clienteObjeto
 let clientes = []
 clientes.push(clienteObjeto1)
