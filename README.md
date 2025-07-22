@@ -6,7 +6,7 @@ El código se encuentra debidamente comentado dentro de sí mismo, con cada paso
 
 El trabajo fue desarrollado de forma íntegramente grupal, a lo largo de 4 sesiones online, ya sea durante clases o a través de Discord.
 
-En cada sesión se iba turnando la persona que escribía el código, y todos de forma colaborativa íbamos resolviendo el problema paso por paso, haciéndonos preguntas, consultando la documentación del Bootcamp, nuestros apuntes personales, Google y en última instancia a Copilot de Visual Studio cuando alguna iteración no funcionaba y no lográbamos dar con la falla, y realmente fue sólo en un par de ocasiones, ya que nuestra intención en todo momento fue lograr desarrollar el código con los conocimientos adquiridos hasta el momento.
+En cada sesión se iba turnando la persona que escribía el código, y todos de forma colaborativa íbamos resolviendo el problema paso por paso, haciéndonos preguntas, consultando la documentación del Bootcamp, nuestros apuntes personales y en última instancia Google cuando alguna iteración no funcionaba y no lográbamos dar con la falla, y realmente fue sólo en un par de ocasiones, ya que nuestra intención en todo momento fue lograr desarrollar el código con los conocimientos adquiridos hasta el momento.
 
 Este trabajo colaborativo fue tremendamente enriquecedor para todos nosotros, puesto que en vez de asignar una tarea a cada uno y trabajar de forma separada, el darnos el tiempo de hacerlo en conjunto fue un ejercicio de colaboración súper productivo, de un gran valor pedagógico, en donde todos tuvimos la oportunidad de preguntar y responder interrogantes que iban surgiendo en cada paso, buscando dar con la lógica necesaria para lograr los objetivos.
 
